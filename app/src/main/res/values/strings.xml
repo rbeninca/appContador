@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Sorteio</string>
+    <string name="app_name">Count Click</string>
+    <string name="hello">Hi</string>
 </resources>
