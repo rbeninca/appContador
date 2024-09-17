@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Conta Click</string>
-    <string name="hello">Olá mundão perdido</string>
     <string name="tela3">Activity 3</string>
 </resources>
