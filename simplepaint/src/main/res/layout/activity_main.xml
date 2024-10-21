@@ -21,10 +21,96 @@
         android:id="@+id/paintView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibCircleShape" />
+
+    <ImageButton
+        android:id="@+id/ibColor"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:contentDescription="COlor"
+        android:scaleType="fitCenter"
+        android:src="@color/cardview_shadow_end_color"
+        app:layout_constraintEnd_toStartOf="@+id/ibFingerShape"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageButton
+        android:id="@+id/ibFingerShape"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ibColor"
+        app:layout_constraintEnd_toStartOf="@+id/ibSquareShape"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ibColor"
+        app:layout_constraintTop_toTopOf="@+id/ibColor"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/finger" />
+
+    ]
+
+    <ImageButton
+        android:id="@+id/ibSquareShape"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ibFingerShape"
+        app:layout_constraintEnd_toStartOf="@+id/ibCircleShape"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ibFingerShape"
+        app:layout_constraintTop_toTopOf="@+id/ibFingerShape"
+        app:srcCompat="@drawable/shape_square" />
+
+    <ImageButton
+        android:id="@+id/ibCircleShape"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ibSquareShape"
+        app:layout_constraintEnd_toStartOf="@+id/ibLayersUndo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ibSquareShape"
+        app:layout_constraintTop_toTopOf="@+id/ibSquareShape"
+        app:srcCompat="@drawable/shape_oval" />
+
+    <ImageButton
+        android:id="@+id/ibLayersUndo"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ibCircleShape"
+        app:layout_constraintEnd_toStartOf="@+id/ibLayers"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ibCircleShape"
+        app:layout_constraintTop_toTopOf="@+id/ibCircleShape"
+        app:srcCompat="@drawable/undo_left" />
+
+    <ImageButton
+        android:id="@+id/ibLayers"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ibLayersUndo"
+        app:layout_constraintEnd_toStartOf="@+id/ibShareFile"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ibLayersUndo"
+        app:layout_constraintTop_toTopOf="@+id/ibLayersUndo"
+        app:srcCompat="@drawable/layers" />
+
+    <ImageButton
+        android:id="@+id/ibShareFile"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ibLayers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ibLayers"
+        app:layout_constraintTop_toTopOf="@+id/ibLayers"
+        app:srcCompat="@drawable/share_to_computer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

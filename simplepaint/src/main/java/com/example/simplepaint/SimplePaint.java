@@ -7,66 +7,45 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class SimplePaint extends View {
-    Paint paint ;
-    Path path ;
+import java.util.ArrayList;
 
+public class SimplePaint extends View {
+    ArrayList<Layer> camadas;
     public SimplePaint(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.paint = new Paint();
-        this.path = new Path();
-        setup();
-
+        camadas = new ArrayList<Layer>();
+        camadas.add(new Layer());
+        setupLayer(getCurrenteLayer());
     }
-    public void setup(){
-        paint.setAntiAlias(true);
-        paint.setStrokeWidth(6f);
-        paint.setColor(0xff000000);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeJoin(Paint.Join.ROUND);
+    public void setupLayer(Layer layer){
+        layer.paint.setAntiAlias(true);
+        layer.paint.setStrokeWidth(6f);
+        layer.paint.setColor(0xff000000);
+        layer.paint.setStyle(Paint.Style.STROKE);
+        layer.paint.setStrokeJoin(Paint.Join.ROUND);
     }
-
-
     public void clear() {
-        path.reset(); // Reseta o caminho
+        getCurrenteLayer().path.reset();
         invalidate(); // Re-renderiza a View
-    }
-    public void draw(){
-        invalidate();
-    }
-    public void setPaint(Paint paint){
-        this.paint = paint;
-    }
-    public void setPath(Path path){
-        this.path = path;
-    }
-    public Paint getPaint(){
-        return paint;
-    }
-    public Path getPath(){
-        return path;
-    }
-    public void setPaintColor(int color){
-        paint.setColor(color);
     }
 
     @Override
     protected void onDraw(android.graphics.Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawPath(path, paint);
+        for (Layer layer : camadas){
+            canvas.drawPath(layer.path, layer.paint);
+        }
     }
-
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                path.moveTo(x, y);
+                getCurrenteLayer().path.moveTo(x, y);
                 return true;
             case MotionEvent.ACTION_MOVE:
-                path.lineTo(x, y);
+                getCurrenteLayer().path.lineTo(x, y);
                 break;
             case MotionEvent.ACTION_UP:
                 break;
@@ -75,5 +54,14 @@ public class SimplePaint extends View {
         }
         invalidate();
         return super.onTouchEvent(event);
+    }
+
+    public Layer getCurrenteLayer(){
+        return camadas.get(camadas.size()-1);
+    }
+
+    public void setColor(int color) {
+        camadas.add(new Layer(getCurrenteLayer().paint));
+        getCurrenteLayer().paint.setColor(color);
     }
 }
