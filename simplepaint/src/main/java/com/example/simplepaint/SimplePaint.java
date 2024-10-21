@@ -1,6 +1,7 @@
 package com.example.simplepaint;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
@@ -20,12 +21,16 @@ public class SimplePaint extends View {
         float InicialY;
     }
     ArrayList<Layer> camadas;
+    Layer previewLayer;
     CoordenadasTraco coordenadasTraco;
     //Define enum para formas shapes (círculo, quadrado, etc)
     public SimplePaint(Context context, AttributeSet attrs) {
         super(context, attrs);
         camadas = new ArrayList<Layer>();
         camadas.add(new Layer());
+        previewLayer = new Layer();
+        setupLayer(previewLayer);
+        previewLayer.paint.setColor(Color.RED);
         setupLayer(getCurrenteLayer());
     }
     public void setupLayer(Layer layer){
@@ -46,6 +51,7 @@ public class SimplePaint extends View {
         for (Layer layer : camadas){
             canvas.drawPath(layer.path, layer.paint);
         }
+        canvas.drawPath(previewLayer.path,previewLayer.paint);
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -64,10 +70,13 @@ public class SimplePaint extends View {
                     //adicionada a forma de círculo com tamanho apartir da coordenada inicia com raio  distancia linear entre inicial e atual
                     getCurrenteLayer().path.reset();
                     getCurrenteLayer().path.moveTo(coordenadasTraco.InicialX, coordenadasTraco.InicialY);
-                    getCurrenteLayer().path.lineTo(x, y);
-                    float raio = (float) Math.sqrt(Math.pow(coordenadasTraco.InicialX - x, 2) + Math.pow(coordenadasTraco.InicialY - y, 2));
-                    //adiciona um texto com tamanho do raio do círculo na tela de desenho e adiciona o círculo
+                    previewLayer.clear();
+                    previewLayer.path.moveTo(coordenadasTraco.InicialX, coordenadasTraco.InicialY);
+                    previewLayer.path.lineTo(x,y);
 
+                    float raio = (float) Math.sqrt(Math.pow(coordenadasTraco.InicialX - x, 2) +
+                            Math.pow(coordenadasTraco.InicialY - y, 2));
+                    //adiciona um texto com tamanho do raio do círculo na tela de desenho e adiciona o círculo
                     getCurrenteLayer().path.addCircle(x, y, raio, Path.Direction.CW);
                 } else if (shape == Shape.SQUARE) {
                     //adicionada a forma de quadrado com tamanho apartir da coordenada inicia
@@ -79,6 +88,7 @@ public class SimplePaint extends View {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                previewLayer.path.reset();
                 break;
             default:
                 return false;
@@ -114,13 +124,6 @@ public class SimplePaint extends View {
         }
     }
 
-    public void shareFile() {
-        //save imaage canvas view in file png
-        this.buildDrawingCache();
-        //cria um arquivo png com o desenho
-        this.getDrawingCache().compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/SimplePaint.png")));
-        this.destroyDrawingCache();
 
-    }
 
 }

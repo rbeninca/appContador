@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -23,8 +24,9 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibCircleShape" />
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <ImageButton
         android:id="@+id/ibColor"
@@ -49,7 +51,7 @@
         app:layout_constraintStart_toEndOf="@+id/ibColor"
         app:layout_constraintTop_toTopOf="@+id/ibColor"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/finger" />
+        app:srcCompat="@drawable/finger_draw" />
 
     ]
 
@@ -112,5 +114,22 @@
         app:layout_constraintStart_toEndOf="@+id/ibLayers"
         app:layout_constraintTop_toTopOf="@+id/ibLayers"
         app:srcCompat="@drawable/share_to_computer" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/ibCircleShape" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Largura"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/seekBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,15 +71,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ibShareFile.setOnClickListener(v -> {
-            simplePaint.shareFile();
+
         });
-
-
-
     }
     public  void setColor (ColorEnvelope envelope){
         int color = envelope.getColor();
         simplePaint.setColor(color);
+        ibColor.setBackgroundColor(color);
 
     }
 }
