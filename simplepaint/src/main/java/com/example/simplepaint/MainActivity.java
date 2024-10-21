@@ -57,6 +57,23 @@ public class MainActivity extends AppCompatActivity {
                     .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
                     .show();
         });
+        ibLayersUndo.setOnClickListener(v -> {
+            simplePaint.undo();
+        });
+        ibCircleShape.setOnClickListener(v -> {
+            simplePaint.shape = SimplePaint.Shape.CIRCLE;
+        });
+        ibSquareShape.setOnClickListener(v -> {
+            simplePaint.shape = SimplePaint.Shape.SQUARE;
+        });
+        ibFingerShape.setOnClickListener(v -> {
+            simplePaint.shape = SimplePaint.Shape.FINGER;
+        });
+
+        ibShareFile.setOnClickListener(v -> {
+            simplePaint.shareFile();
+        });
+
 
 
     }
